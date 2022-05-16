@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" th:href="@{/css/styles.css}">
+<link rel="stylesheet" th:href="@{/css/formulario.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<title>Spring10a-MVC. EDITAR</title>
+</head>
+<body>
+	<br>
+	<br>
+	<div id="wrapper">
+	
+		
+		<form method="post" th:object="${incidencia}"
+			th:action="@{/incidencias/save}">
+
+			<div class="form-group">
+				<input id="id" th:field="*{id}" type="hidden" />
+			</div>
+
+			<div class="form-group">
+				<label>Código:</label> <input type="text" class="form-control"
+					th:field="*{cod}" placeholder="Código de incidencia">
+					<div th:if="${#fields.hasErrors('cod')}"
+								th:errors="*{cod}" class="has-error help-inline">firstName
+								Error</div>
+			</div>
+
+
+			<div class="form-group">
+				<label>Departamento:</label> <input type="text" class="form-control"
+					th:field="*{departamento}" placeholder="Departamento ">
+					<div th:if="${#fields.hasErrors('departamento')}"
+								th:errors="*{departamento}" class="has-error help-inline">firstName
+								Error</div>
+			</div>
+
+			<div class="form-group">
+				<label>Descripción:</label>
+				<textarea rows="3" cols="25" th:field="*{descripcion}"
+					class="form-control" placeholder="Descripcion">
+						 </textarea>
+						 <div th:if="${#fields.hasErrors('descripcion')}"
+								th:errors="*{descripcion}" class="has-error help-inline">firstName
+								Error</div>
+			</div>
+
+
+			<div class="form-group">
+				<label>Cliente:</label> <input type="text" class="form-control"
+					th:field="*{cliente}" placeholder="Cliente" readonly="true">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Editar
+				incidencia</button>
+
+		</form>
+
+	</div>
+</body>
+</html>

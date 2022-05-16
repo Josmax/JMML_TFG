@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<title>Spring10a-MVC</title>
+</head>
+<body>
+
+	<div class="container">
+
+		<h1>
+			DETALLES<br />
+		</h1>
+		<br>
+
+		<table class="table table-striped">
+			<tr>
+				<th style="text-align: center;">Nº</th>
+				<th style="text-align: center;">Código</th>
+				<th style="text-align: center;">Descripción</th>
+				<th style="text-align: center;">Departamento</th>
+				<th style="text-align: center;"></th>
+			</tr>
+			
+			<td th:text="${incidencia.id}" />
+			<td th:text="${incidencia.cod}" />
+			<td th:text="${incidencia.descripcion}" />
+			<td th:text="${incidencia.departamento}" />
+			<td class="text-center">
+			</tr>
+
+
+		</table>
+	</div>
+
+
+	<div class="container">
+
+		<h2 style="text-align: left;">Mensajes</h2>
+		<table class="table table-striped">
+			<tr>
+				<th style="text-align: left;">Titulos</th>
+				<th style="text-align: left;">Mensajes</th>
+				
+			</tr>
+			<tr th:each="mensaje, status : ${mensajes}">
+				<td  style="text-align: left;" th:text="${mensaje.titulo}" />
+				<td  style="text-align: left;" th:text="${mensaje.contenido}" />
+				
+			</tr>
+
+		</table>
+		<p>
+			<a th:href="@{/mensaje/new(id=${incidencia.id})}" class="btn btn-primary">Comentar
+				</a>
+				
+		</p>
+	</div>
+
+
+
+
+
+</body>
+</html>

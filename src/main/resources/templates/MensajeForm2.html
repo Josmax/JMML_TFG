@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" th:href="@{/css/styles.css}">
+<link rel="stylesheet" th:href="@{/css/formulario.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<title>Nuevo mensaje</title>
+</head>
+<body>
+
+	<br>
+	<h3 style="text-align: center;">NUEVO MENSAJE</h3>
+	<div id="wrapper">
+
+		<form method="post" th:object="${mensaje}"
+			th:action="@{/mensaje/save}">
+
+			<div class="form-group">
+				<input id="mensaje_id" th:field="*{mensaje_id}" type="hidden" />
+			</div>
+
+			<div class="form-group">
+				<label>Título:</label> <input type="text" class="form-control"
+					th:field="*{titulo}" placeholder="Título">
+				<div th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"
+					class="has-error help-inline">Título Error</div>
+
+			</div>
+
+			<div class="form-group">
+				<label>Mensaje:</label>
+				<textarea rows="7" cols="25" th:field="*{contenido}"
+					class="form-control" placeholder="Mensaje">
+						 </textarea>
+				<div th:if="${#fields.hasErrors('contenido')}"
+					th:errors="*{contenido}" class="has-error help-inline">Contenido
+					Error</div>
+			</div>
+			<div class="form-group">
+				<label>Incidencia:</label> <input type="number" class="form-control"
+					th:field="*{incidencia}" placeholder="Incidencia">
+			</div>
+			<button type="submit" class="btn btn-primary">Nuevo mensaje</button>
+
+		</form>
+
+	</div>
+</body>
+
+
+
+</html>

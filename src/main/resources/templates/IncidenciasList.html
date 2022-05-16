@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<title>Spring10a-MVC</title>
+</head>
+<body>
+
+	<div class="container">
+
+		<h1>
+			INCIDENCIAS<br />
+		</h1>
+
+		<br>
+
+		<form class="form-inline" th:action="@{/incidencias}"
+			style="text-align: left;">
+
+			<div class="form-group mb-2">
+				<label></label>
+			</div>
+			<div class="form-group mx-sm-3 mb-2">
+				<input type="text" name="palabra" class="form-control"
+					id="palabra" th:value="${palabra}" placeholder="Escribe para filtrar">
+
+			</div>
+			<input type="submit" class="btn btn-secondary mb-2" value="Buscar">
+			
+		</form>
+		<br>
+		<table class="table table-striped">
+			<tr>
+				<th style="text-align: center;">Nº</th>
+				<th style="text-align: center;">Código</th>
+				<th style="text-align: center;">Descripción</th>
+				<th style="text-align: center;">Departamento</th>
+				<th style="text-align: center;">Acciones</th>
+			</tr>
+			<tr th:each="incidencia, status : ${incidenciasList}">
+				<td th:text="${status.index + 1}" />
+				<td th:text="${incidencia.cod}" />
+				<td th:text="${incidencia.descripcion}" />
+				<td th:text="${incidencia.departamento}" />
+
+				<td><a th:href="@{/incidencias/detalles(id=${incidencia.id})}">Detalles</a>
+					| <a th:href="@{/incidencias/edit(id=${incidencia.id})}">Editar</a>
+					| <a th:href="@{/incidencias/delete(id=${incidencia.id})}">Eliminar</a>
+			</tr>
+
+		</table>
+		<p>
+			<a href="/incidencias/new" class="btn btn-primary">Registrar
+				incidencia</a>
+		</p>
+	</div>
+</body>
+</html>

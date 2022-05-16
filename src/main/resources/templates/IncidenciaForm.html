@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/custom.css}" />
+
+<title>Spring10a-MVC. Formulario</title>
+</head>
+<body>
+
+	<div class="container">
+		<h1>
+			NUEVA INCIDENCIA<br />
+		</h1>
+		<div align="center">
+			<br>
+			<form method="post" th:object="${incidencia}"
+				th:action="@{/incidencias/save}">
+				<input id="id" th:field="*{id}" type="hidden" />
+				<table>
+					<tr>
+						<td><label for="cod">Código:</label></td>
+						<td><input type="text" th:field="*{cod}" /></td>
+					</tr>
+					<tr>
+
+						<td><label for="departamento">Despartamento:</label></td>
+						<td><input type="text" th:field="*{departamento}" /></td>
+
+					</tr>
+					<tr>
+						<td><label for="descripcion">Descripción:</label></td>
+						<td><textarea rows="3" cols="25" th:field="*{descripcion}">
+						 </textarea></td>
+					</tr>
+					<tr>
+
+						<td><label for="cliente">Cliente:</label></td>
+						<td><input type="text" th:field="*{cliente}" /></td>
+
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input type="submit"
+							value="Registrar incidencia"></td>
+					</tr>
+
+				</table>
+			</form>
+
+		</div>
+	</div>
+</body>
+</html>

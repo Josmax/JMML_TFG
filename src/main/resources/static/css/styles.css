@@ -1,0 +1,11 @@
+#wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: auto;
+}
+
+#tabla {
+    margin-right: 28px;
+}
+
