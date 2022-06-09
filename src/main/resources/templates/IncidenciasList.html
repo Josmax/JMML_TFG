@@ -8,7 +8,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" th:href="@{/css/custom.css}" />
 
-<title>Spring10a-MVC</title>
+<title>Gestion Incidencias</title>
 </head>
 <body>
 
@@ -32,6 +32,16 @@
 
 			</div>
 			<input type="submit" class="btn btn-secondary mb-2" value="Buscar">
+			
+		</form>
+		
+		<form class="form-inline" th:action="@{/logout}"
+			style="text-align: right;">
+
+			<div class="form-group mb-2">
+				<label></label>
+			</div>
+			<input type="submit" class="btn btn-primary mb-2" value="Logout">
 			
 		</form>
 		<br>

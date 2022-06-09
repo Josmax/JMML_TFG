@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+
+<title>Gestion Incidencias</title>
+</head>
+<body>
+
+	<form th:action="@{/Autentication}" method='POST'>
+
+		<table>
+			<tr>
+				<td>Usuario:</td>
+				<td><input type='text' name='username' value=''></td>
+			</tr>
+			<tr>
+				<td>Clave:</td>
+				<td><input type='password' name='password' /></td>
+			</tr>
+			<tr>
+				<td><input name="submit" type="submit" value="login" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

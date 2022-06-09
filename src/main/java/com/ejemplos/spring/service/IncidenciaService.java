@@ -10,17 +10,17 @@ public interface IncidenciaService {
 
 	// Para listar toda las incidencias.
 	public List<Incidencia> findAll();
-
 	// Para Borrar por id
 	public void deleteById(int id);
 
-	// Para Update & Add
 	public void save(Incidencia incidencia);
 
 	public Optional<Incidencia> findById(int id);
-	
+
 	public Incidencia findByCod(String cod);
-	
+
 	public List<Incidencia> findAllFiltro(String palabra);
 
 }
+
+

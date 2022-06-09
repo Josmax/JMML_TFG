@@ -31,12 +31,12 @@ class Incidencia {
 	private String cod;
 
 	@Column(name = "descripcion")
-	//@Size(min = 1, max = 50, message = "La descripcion debe medir entre 1 y 50")
+	@Size(min = 1, max = 50, message = "La descripcion debe medir entre 1 y 50")
 	@NotBlank(message = "Introduce una descripción")
 	private String descripcion;
 
 	@NotBlank(message = "Debes introducir el departamento")
-	//@Size(min = 1, max = 50, message = "El departamento debe medir entre 1 y 50")
+	@Size(min = 1, max = 50, message = "El departamento debe medir entre 1 y 50")
 	@Column(name = "departamento")
 	private String departamento;
 
@@ -52,6 +52,10 @@ class Incidencia {
 
 	}
 
+	public Incidencia(int id) {
+		this();
+		this.id = id;
+	}
 	public Incidencia() {
 
 		super();

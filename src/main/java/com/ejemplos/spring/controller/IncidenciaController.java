@@ -22,6 +22,7 @@ import com.ejemplos.spring.model.Incidencia;
 import com.ejemplos.spring.model.User;
 import com.ejemplos.spring.service.IncidenciaService;
 import com.ejemplos.spring.service.MensajeService;
+import com.ejemplos.spring.service.ProcesoService;
 import com.ejemplos.spring.service.UserService;
 
 @Controller
@@ -32,22 +33,25 @@ public class IncidenciaController {
 	
 	@Autowired
 	MensajeService serviceMensaje;
+	
+	@Autowired
+	ProcesoService serviceProceso;
 
 	private static final Logger log = LoggerFactory.getLogger(IncidenciaController.class);
 
 	// Listar Usuarios
-	@GetMapping("/incidencias")
-	public String listUsers(Model m, @Param("palabra")String palabra) {
-		//String palabra2 = "002";
+	@GetMapping({"/", "/incidencias"})
+	public String listIncidencia(Model m, @Param("palabra")String palabra) {
 		//m.addAttribute("incidenciasList", service.findAll());
 		m.addAttribute("incidenciasList", service.findAllFiltro(palabra));
-		log.info("Dentro del listado de incidencias");
+		log.info("---- LISTADO DE INCIDENCIAS");
 		return "IncidenciasList";
 	}
 
 	@GetMapping("/incidencias/new")
-	public String newUser(Incidencia incidencia, Model m) {
+	public String newIncidencia(Incidencia incidencia, Model m) {
 		m.addAttribute("incidencia", incidencia);
+		log.info("---- NUEVA INCIDENCIA");
 		return "IncidenciaForm2";
 	}
 	
@@ -55,6 +59,7 @@ public class IncidenciaController {
 	public ModelAndView editIncidencia(@RequestParam("id") int id) {
 		//m.addAttribute("incidencia", incidencia);
 		//return "IncidenciaForm2";
+		log.info("---- EDITAR INCIDENCIA");
 		ModelAndView modelo = new ModelAndView("IncidenciaEdit");
 		Incidencia incidencia = service.findById(id).get();
 		modelo.addObject("incidencia", incidencia);
@@ -63,36 +68,38 @@ public class IncidenciaController {
 	}
 
 	@GetMapping("/incidencias/delete")
-	public String deleteUser(@RequestParam("id") int id) {
+	public String deleteIncidencia(@RequestParam("id") int id) {
 		service.deleteById(id);
-		log.info("eliminada la incidencia");
-		return ("redirect:/incidencias");
+		log.info("---- ELIMINAR INCIDENCIA");
+		return ("redirect:/");
 	}
 
-	// Guardar Usuario
+	// Guardar Incidencia
 	@PostMapping("/incidencias/save")
-	public String saveUser(@Validated Incidencia incidencia, BindingResult bindingResult) {
+	public String saveIncidencia(@Validated Incidencia incidencia, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
 			
-			System.out.println("-------> HAY ERRORES");
+			log.info("---- ERRORES AL GUARDAR LA INCIDENCIA");
             return "IncidenciaForm2";
         }
-		System.out.println("-------> NO000 HAY ERRORES");
+		log.info("---- INCIDENCIA CORRECTA");
 		service.save(incidencia);
-		return ("redirect:/incidencias");
+		return ("redirect:/");
 	}
 	
 	// Detalles de una incidencia
 	@GetMapping("/incidencias/detalles")
-	public String detallesIncidencias(@RequestParam("id") int id, Model m, Model m2) {
+	public String detallesIncidencias(@RequestParam("id") int id, Model m, Model m2, Model proceso) {
 		
 		serviceMensaje.findAll();
-		//System.out.println("--"+ service.findById(id).get());
-		//System.out.println("------->"+ serviceMensaje.findByIncidenciaId(id));
 		m.addAttribute("incidencia", service.findById(id).get());
 		m2.addAttribute("mensajes", serviceMensaje.findByIncidenciaId(id));
-		log.info("----->Dentro del listado de incidencias");
+		log.info("---- Justo ANTES");
+		proceso.addAttribute("proceso", serviceProceso.findByIncidenciaId(id));
+		//Poner solo el ultimo proceso creado(el estado por ejemplo que seria más descriptivo)
+		log.info("---- PROCESOS: "+proceso);
+		
 		return "IncidenciaDetalles";
 	}
 

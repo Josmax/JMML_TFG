@@ -22,7 +22,7 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	//Listar Usuarios
-	@GetMapping("/")
+	@GetMapping("/users")
 	public String listUsers(Model m) {
 		m.addAttribute("userList",service.findAll());
 		

@@ -8,7 +8,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" th:href="@{/css/custom.css}" />
 
-<title>Spring10a-MVC</title>
+<title>Gestion Incidencias</title>
 </head>
 <body>
 
@@ -17,14 +17,26 @@
 		<h1>
 			DETALLES<br />
 		</h1>
-		<br>
+		
+		</form>
+		
+		<form class="form-inline" th:action="@{/logout}"
+			style="text-align: right;">
 
+			<div class="form-group mb-2">
+				<label></label>
+			</div>
+			<input type="submit" class="btn btn-primary mb-2" value="Logout">
+			
+		</form>
+		<br>
 		<table class="table table-striped">
 			<tr>
 				<th style="text-align: center;">Nº</th>
 				<th style="text-align: center;">Código</th>
 				<th style="text-align: center;">Descripción</th>
 				<th style="text-align: center;">Departamento</th>
+			 <th style="text-align: center;">Estado</th>
 				<th style="text-align: center;"></th>
 			</tr>
 			
@@ -32,6 +44,8 @@
 			<td th:text="${incidencia.cod}" />
 			<td th:text="${incidencia.descripcion}" />
 			<td th:text="${incidencia.departamento}" />
+		  <td> <a th:href="@{/procesos/detalles(id=${incidencia.id})}">Proceso</a>
+		  <!-- <td> <a th:href="@{/incidencias/detalles(id=${incidencia.id})}">Proceso</a> --> 
 			<td class="text-center">
 			</tr>
 
@@ -47,11 +61,14 @@
 			<tr>
 				<th style="text-align: left;">Titulos</th>
 				<th style="text-align: left;">Mensajes</th>
+				<th style="text-align: center;">Acción</th>
 				
 			</tr>
 			<tr th:each="mensaje, status : ${mensajes}">
 				<td  style="text-align: left;" th:text="${mensaje.titulo}" />
 				<td  style="text-align: left;" th:text="${mensaje.contenido}" />
+				<td> <a  th:href="@{/mensaje/edit(id=${mensaje.mensaje_id})}">Editar</a>
+				| <a th:href="@{/mensaje/delete(id=${mensaje.mensaje_id})}">Eliminar</a>
 				
 			</tr>
 

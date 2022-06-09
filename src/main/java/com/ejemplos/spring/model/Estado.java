@@ -3,18 +3,18 @@ package com.ejemplos.spring.model;
 
 public enum Estado {
 
-	Pendiente(1),
-	Resuelto(2),
-	Procesando(3), 
-	SinSolucion(4);
+	Pendiente("Pendiente"),
+	Resuelta("Resuelta"),
+	Procesando("Procesando"), 
+	SinSolucion("SinSolucion");
 	
-	private final int id;
+	private final String estado;
 	
-	Estado(int id) {
-		this.id=id;
+	Estado(String estado) {
+		this.estado=estado;
 	}
-	public int getId() {
-		return id;
+	public String getEstado() {
+		return estado;
 	}
 	
 

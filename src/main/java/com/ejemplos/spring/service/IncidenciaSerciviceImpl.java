@@ -3,9 +3,12 @@ package com.ejemplos.spring.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ejemplos.spring.controller.IncidenciaController;
 import com.ejemplos.spring.model.Incidencia;
 import com.ejemplos.spring.model.User;
 import com.ejemplos.spring.repository.IncidenciaDao;
@@ -16,6 +19,8 @@ public class IncidenciaSerciviceImpl implements IncidenciaService {
 	@Autowired
 	IncidenciaDao incidenciaDAO;
 
+	private static final Logger log = LoggerFactory.getLogger(IncidenciaController.class);
+	
 	public List<Incidencia> findAll() {
 		return incidenciaDAO.findAll();
 	}
@@ -45,11 +50,11 @@ public class IncidenciaSerciviceImpl implements IncidenciaService {
 	public List<Incidencia> findAllFiltro(String palabra) {
 
 		if (palabra != null) {
-			System.out.println("----->La palabra NONO es NULL"+palabra);
+			log.info("---- LA PALABRA NO ES NULA : "+palabra);
 			return incidenciaDAO.findAllFiltro(palabra);
 			
 		}
-		System.out.println("----->La palabra SISI es NULL");
+		log.info("---- LA PALABRA ES NULA : ");
 		return incidenciaDAO.findAll();
 		
 	}
